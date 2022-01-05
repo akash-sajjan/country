@@ -1,8 +1,9 @@
 import React from "react";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import Home from "../screens/home";
+import { View } from "react-native";
 
 const mockStore = configureMockStore();
 const store = mockStore({});
@@ -16,14 +17,14 @@ const createTestProps = () => ({
 describe("Users screen", () => {
   describe("rendering", () => {
     const props = createTestProps();
-    const wrapper = shallow(
+    const wrapper = mount(
       <Provider store={store}>
         <Home {...props} />
       </Provider>
     );
 
     it("should render a view", () => {
-      expect(wrapper.find(".home-wrapper")).toHaveLength(0);
+      expect(wrapper.find(View)).toHaveLength(1);
     });
   });
 });
